@@ -1,0 +1,79 @@
+/* General Styles */
+body {
+    width: 280px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Header */
+h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Exchange Rate Display */
+#rateText {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Input Box */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    background: white;
+}
+
+/* Buttons */
+button {
+    width: 95%;
+    padding: 12px;
+    margin: 6px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+}
+
+/* Converted Result */
+#convertedResult {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007BFF;
+    margin-top: 10px;
+}
+
+/* Loading Animation */
+.loading {
+    display: none;
+    margin: 10px auto;
+    width: 24px;
+    height: 24px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #007BFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
