@@ -1,17 +1,19 @@
 /* General Styles */
 body {
-    width: 280px;
+    width: 320px;
     font-family: 'Arial', sans-serif;
     text-align: center;
     background: #f4f4f4;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Header */
 h2 {
     margin-bottom: 10px;
     color: #333;
+    font-size: 20px;
 }
 
 /* Exchange Rate Display */
@@ -25,13 +27,20 @@ h2 {
 /* Input Box */
 input {
     width: 90%;
-    padding: 10px;
-    margin: 8px 0;
+    padding: 12px;
+    margin: 2px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
     text-align: center;
     background: white;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #007BFF;
+    outline: none;
 }
 
 /* Buttons */
@@ -42,31 +51,64 @@ button {
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(135deg, #007BFF, #0056b3);
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
 }
 
-button:hover {
-    background: linear-gradient(135deg, #0056b3, #003f7f);
+#convertUserInput {
+    background: #007BFF;
+}
+
+#convertUserInput:hover {
+    background: #0056b3;
+}
+
+/* Button Row for Convert and Reset */
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0px;
+}
+
+#convertButton {
+    flex: 1;
+    background: #28a745;
+    margin-right: 0px;
+}
+
+#convertButton:hover {
+    background: #218838;
+}
+
+#resetButton {
+    flex: 1;
+    background: #cd1a23;
+    margin-left: 0px;
+}
+
+#resetButton:hover {
+    background: #a71d2a;
 }
 
 /* Converted Result */
 #convertedResult {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: #007BFF;
-    margin-top: 10px;
+    margin-top: 0px;
+    background: #e9f5ff;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 /* Loading Animation */
 .loading {
     display: none;
     margin: 10px auto;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border: 4px solid #ccc;
     border-top: 4px solid #007BFF;
     border-radius: 50%;

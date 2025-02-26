@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         rateText.innerText = `1 USD = ${exchangeRate.toFixed(2)} LKR`;
 
     } catch (error) {
-        console.error("Error fetching exchange rate:", error);
+        // console.error("Error fetching exchange rate:", error);
         rateText.innerText = "Error fetching rate!";
     }
 
@@ -64,26 +64,35 @@ document.addEventListener("DOMContentLoaded", async function () {
 // Function to convert prices using the fetched exchange rate
 function convertPrices(exchangeRate) {
     document.querySelectorAll("*:not(script):not(style)").forEach(element => {
-        if (element.childNodes.length === 1 && element.childNodes[0].nodeType === 3) { 
-            let originalText = element.innerHTML;
-            let newText = originalText.replace(/\$\s?(\d+(\.\d+)?)/g, function (match, p1) {
-                let lkrValue = (parseFloat(p1) * exchangeRate).toFixed(2);
-                return `${lkrValue} LKR`;
-            });
+        if (!element.hasAttribute("data-original-price")) {
+            element.childNodes.forEach(node => {
+                if (node.nodeType === 3) { // Ensure it's a text node
+                    let originalText = node.textContent;
 
-            if (originalText !== newText) {
-                element.setAttribute("data-original-price", originalText);
-                element.innerHTML = newText;
-            }
+                    let newText = originalText.replace(/(?:USD|\$|US\$)\s?([\d,]+(?:\.\d+)?)/g, function (match, p1) {
+                        let numericValue = parseFloat(p1.replace(/,/g, '')); // Remove commas
+                        let lkrValue = (numericValue * exchangeRate).toFixed(2);
+                        return `${lkrValue} LKR`;
+                    });
+
+                    if (originalText !== newText) {
+                        element.setAttribute("data-original-price", originalText); // Store original only once
+                        node.textContent = newText;
+                    }
+                }
+            });
         }
     });
 }
 
+
+
+
 // Function to reset converted prices
 function resetPrices() {
-    let elements = document.querySelectorAll("[data-original-price]");
-    elements.forEach(element => {
-        element.innerHTML = element.getAttribute("data-original-price");
-        element.removeAttribute("data-original-price");
+    document.querySelectorAll("[data-original-price]").forEach(element => {
+        let originalText = element.getAttribute("data-original-price");
+        element.textContent = originalText; // Restore entire element text
+        element.removeAttribute("data-original-price"); // Remove attribute
     });
 }
